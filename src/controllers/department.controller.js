@@ -4,6 +4,7 @@ import {CustomError} from "../utils/index.js";
 
 export const createDept =  async (req, res)=>{
     const {name} = req.body;
+    console.log(name);
 
     if(!name){ 
         throw new CustomError("Please fill all the fields.", 400);

@@ -1,10 +1,9 @@
 import {Router} from "express";
 import { createDept, getDept, deleteDept, updateDept } from "../controllers/index.js";
-import { catchAsync } from "../middleware/index.js";
-
+import { catchAsync, verifyJWT } from "../middleware/index.js";
 export const deptRoutes = Router();
 
-deptRoutes.post("/create-dept", catchAsync(createDept));
+deptRoutes.post("/create-dept", verifyJWT, catchAsync(createDept));
 
 deptRoutes.get("/get-depts", catchAsync(getDept));
 
