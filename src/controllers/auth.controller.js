@@ -38,7 +38,7 @@ const passwordGenerator = () => {
 
 const createAdmin = async (email, password) => {
     // a. Role create
-    const role = await Role.create({ name: "admin" });
+    const role = await Role.create({ name: "Admin" });
     // b. Management dept create
     const dept = await Department.create({ name: "Management" });
     // c. Hash the password
@@ -155,7 +155,7 @@ export const login = async (req, res) => {
 export const registerUser = async (req, res) => {
     const { email, role, deptId } = req.body;
 
-    if (!email || !role || !deptId) {
+    if (!email) {
         throw new CustomError("Please fill all the fields.", 400);
     }
     // 1. Check wheather the email already exists or not
@@ -190,8 +190,7 @@ export const registerUser = async (req, res) => {
 }
 
 export const getNewAccessToken = async (req, res) => {
-    const refreshToken = req.cookies?.jwt;
-    console.log(refreshToken);
+    const refreshToken = req?.cookies?.jwt;
 
     // now let's verify if it is the same token or not
     if(!refreshToken){
@@ -214,7 +213,6 @@ export const getNewAccessToken = async (req, res) => {
 
 export const logout = async (req, res) => {
     res.clearCookie("jwt",{
-        maxAge: 1000 * 60 * 60 * 24 * 7,
         httpOnly: true,
         // secure: true,
         // sameSite: "none",
@@ -226,3 +224,5 @@ export const logout = async (req, res) => {
 // users non hashed passwords
 // amit@gmail.com = abc123
 // yogita@gmail.com = d2B.FK^E7qAH
+// amitarteva1@gmail.com = tV@dHMV6"H:>
+// akak61999@gmail.com = T}&f/kc+RP]j

@@ -3,7 +3,12 @@ import cors from "cors";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
 
-import { deptRoutes, authRoutes, roleRoutes, permissionRoutes } from "./routes/index.js";
+import { deptRoutes,
+    authRoutes,
+    roleRoutes,
+    permissionRoutes,
+    userRoutes
+} from "./routes/index.js";
 import { errorHandler } from "./middleware/handleErrors.js";
 import corsOptions from "./config/cors.options.js";
 
@@ -29,6 +34,7 @@ app.use("/api/dept", deptRoutes);
 app.use("/api/auth", authRoutes); // users
 app.use("/api/role", roleRoutes);
 app.use("/api/permission", permissionRoutes);
+app.use("/api/user", userRoutes);
 
 // express default error handler..it should always be at the end of middleware stack otherwise it will give an error
 app.use(errorHandler);

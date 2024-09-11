@@ -9,7 +9,12 @@ const deptSchema = new Schema(
         managerId:{
             type: Schema.Types.ObjectId,
             required: false,
+            ref: "User",
         },
+        isDeptDeleted:{
+            type: Boolean,
+            default: false,
+        }
     },
     {
         timestamps: true,

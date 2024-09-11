@@ -16,7 +16,7 @@ export const verifyJWT = async (req, res, next) => {
     try{
         // wrapping decodedToken in try catch even though it's a sync because if token doesn't match or anything it will return an error which will crash our server so to prevent that we have to wrap it in decodedToken
         decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET_KEY);
-        console.log(decodedToken);
+        // console.log(decodedToken);
     }catch(err){
         return next(new CustomError("Session Expired", 403)); //forbidden
     }
